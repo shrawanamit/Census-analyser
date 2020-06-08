@@ -12,16 +12,16 @@ namespace NUnitTestProject1
             
         }
 
-        public static string CENSUS_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusData.csv";
+        public static string India_CENSUS_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusData.csv";
         public static string WRONG_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\CensusAnalyser\CensusAnalyserManager\IndiaStateCensusData.csv";
         public static string CENSUS_CSV_FILE_PATH_Wrong_Type = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusData.txt";
         public static string CENSUS_CSV_FILE_PATH_Wrong_Delimeter = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusDataWrongDelimeter.csv";
-
+        public static string India_STATE_CODE_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCode.csv";
         //test case 1.1 : cheaking no of records
         [Test]
         public void GivenCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
         {
-            DataTable csvData = CensusAnalyserManager.LoadCensusData(CENSUS_CSV_FILE_PATH);
+            DataTable csvData = CensusAnalyserManager.LoadCensusData(India_CENSUS_CSV_FILE_PATH);
             Assert.AreEqual(29, csvData.Rows.Count);
         }
         //test case 1.2 : cheaking wrong csv file path
@@ -63,6 +63,11 @@ namespace NUnitTestProject1
                 Assert.AreEqual(CensusAnalyzerException.ExceptionType.WRONG_DELIMETER, e.EType);
             }
         }
-
+        [Test]
+        public void GivenIndianStateCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
+        {
+            DataTable csvData = CensusAnalyserManager.LoadCensusData(India_STATE_CODE_CSV_FILE_PATH);
+            Assert.AreEqual(37, csvData.Rows.Count);
+        }
     }
 }
