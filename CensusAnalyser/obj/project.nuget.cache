@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "E5x3DXZDQhOPp32A8inHCb8Wb7+DWX4wy/GPf3y/FojFoisAY+z343HXTbaTJ7pDGq50R82Dh/+Wz2gFjdPyTQ==",
+  "success": true,
+  "projectFilePath": "G:\\vs\\CensusAnalyser\\CensusAnalyser\\CensusAnalyser.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\amit\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
