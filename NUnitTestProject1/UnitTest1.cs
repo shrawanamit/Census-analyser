@@ -12,11 +12,11 @@ namespace NUnitTestProject1
             
         }
 
-        public static string India_CENSUS_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusData.csv";
-        public static string WRONG_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\CensusAnalyser\CensusAnalyserManager\IndiaStateCensusData.csv";
-        public static string CENSUS_CSV_FILE_PATH_Wrong_Type = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusData.txt";
-        public static string CENSUS_CSV_FILE_PATH_Wrong_Delimeter = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusDataWrongDelimeter.csv";
-        public static string India_STATE_CODE_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCode.csv";
+        public const string India_CENSUS_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusData.csv";
+        public const string WRONG_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\CensusAnalyser\CensusAnalyserManager\IndiaStateCensusData.csv";
+        public const string CENSUS_CSV_FILE_PATH_Wrong_Type = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusData.txt";
+        public const string CENSUS_CSV_FILE_PATH_Wrong_Delimeter = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusDataWrongDelimeter.csv";
+        public const string India_STATE_CODE_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCode.csv";
         //test case 1.1 : cheaking no of records
         [Test]
         public void GivenCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
@@ -63,10 +63,11 @@ namespace NUnitTestProject1
                 Assert.AreEqual(CensusAnalyzerException.ExceptionType.WRONG_DELIMETER, e.EType);
             }
         }
+        //test case 2.1 : cheaking no of records in india state csv
         [Test]
         public void GivenIndianStateCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
         {
-            DataTable csvData = CensusAnalyserManager.LoadCensusData(India_STATE_CODE_CSV_FILE_PATH);
+            DataTable csvData = CensusAnalyserManager.LoadIndiaStateCode(India_STATE_CODE_CSV_FILE_PATH);
             Assert.AreEqual(37, csvData.Rows.Count);
         }
     }

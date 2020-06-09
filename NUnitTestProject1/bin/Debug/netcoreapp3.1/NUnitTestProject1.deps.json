@@ -18,6 +18,7 @@
           "NUnitTestProject1.dll": {}
         }
       },
+      "LumenWorks.Framework.IO/3.8.0": {},
       "LumenWorksCsvReader/4.0.0": {
         "runtime": {
           "lib/netstandard2.0/LumenWorks.Framework.IO.dll": {
@@ -876,6 +877,10 @@
         }
       },
       "CensusAnalyser/1.0.0": {
+        "dependencies": {
+          "LumenWorks.Framework.IO": "3.8.0",
+          "LumenWorksCsvReader": "4.0.0"
+        },
         "runtime": {
           "CensusAnalyser.dll": {}
         }
@@ -887,6 +892,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "LumenWorks.Framework.IO/3.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Br2Q9j/tf2uF3Ci4CajidD18tui9DOg2iIzH5Xjro35ra6r8HGMD12B+ZlJ8v9AN3YXl7iPu5YDGbBlXVcZpHw==",
+      "path": "lumenworks.framework.io/3.8.0",
+      "hashPath": "lumenworks.framework.io.3.8.0.nupkg.sha512"
     },
     "LumenWorksCsvReader/4.0.0": {
       "type": "package",
