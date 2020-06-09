@@ -21,7 +21,7 @@ namespace NUnitTestProject1
         [Test]
         public void GivenCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
         {
-            DataTable csvData = CensusAnalyserManager.LoadCensusData(India_CENSUS_CSV_FILE_PATH);
+            DataTable csvData = CensusAnalyserManager.LoadIndiaCensusData(India_CENSUS_CSV_FILE_PATH);
             Assert.AreEqual(29, csvData.Rows.Count);
         }
         //test case 1.2 : cheaking wrong csv file path
@@ -30,7 +30,7 @@ namespace NUnitTestProject1
         {
             try
             {
-                DataTable csvData = CensusAnalyserManager.LoadCensusData(WRONG_CSV_FILE_PATH);
+                DataTable csvData = CensusAnalyserManager.LoadIndiaCensusData(WRONG_CSV_FILE_PATH);
             }
             catch (CensusAnalyzerException e)
             {
@@ -43,7 +43,7 @@ namespace NUnitTestProject1
         {
             try
             {
-                DataTable csvData = CensusAnalyserManager.LoadCensusData(CENSUS_CSV_FILE_PATH_Wrong_Type);
+                DataTable csvData = CensusAnalyserManager.LoadIndiaCensusData(CENSUS_CSV_FILE_PATH_Wrong_Type);
             }
             catch (CensusAnalyzerException e)
             {
@@ -56,13 +56,14 @@ namespace NUnitTestProject1
         {
             try
             {
-                DataTable csvData = CensusAnalyserManager.LoadCensusData(CENSUS_CSV_FILE_PATH_Wrong_Delimeter);
+                DataTable csvData = CensusAnalyserManager.LoadIndiaCensusData(CENSUS_CSV_FILE_PATH_Wrong_Delimeter);
             }
             catch (CensusAnalyzerException e)
             {
                 Assert.AreEqual(CensusAnalyzerException.ExceptionType.WRONG_DELIMETER, e.EType);
             }
         }
+
         //test case 2.1 : cheaking no of records in india state csv
         [Test]
         public void GivenIndianStateCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
