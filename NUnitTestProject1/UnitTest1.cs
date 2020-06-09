@@ -32,9 +32,9 @@ namespace NUnitTestProject1
             {
                 int csvDataCount = CensusAnalyserManager.LoadIndiaCensusData(WRONG_CSV_FILE_PATH);
             }
-            catch (CensusAnalyzerException e)
+            catch (CSVBuilderException e)
             {
-                Assert.AreEqual(CensusAnalyzerException.ExceptionType.FILE_NOT_FOUND, e.EType);
+                Assert.AreEqual(CSVBuilderException.ExceptionType.FILE_NOT_FOUND, e.EType);
             }
         }
         //test case 1.3 : cheaking wrong csv file type
@@ -47,7 +47,7 @@ namespace NUnitTestProject1
             }
             catch (CensusAnalyzerException e)
             {
-                Assert.AreEqual(CensusAnalyzerException.ExceptionType.WRONG_CSV_FILE_PATH_TYPE, e.EType);
+                Assert.AreEqual(CensusAnalyzerException.ExceptionType.WRONG_CSV_FILE_TYPE, e.EType);
             }
         }
         //test case 1.4 : cheaking wrong csv file type

@@ -10,13 +10,15 @@ namespace CensusAnalyser
         //loading India census data
         public static int LoadIndiaCensusData(string indianCensusCSVFilePath)
         {
-            DataTable csvDataTable = CSVBuilder.LoadCSVData( indianCensusCSVFilePath);
+            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            DataTable csvDataTable = csvBuilder.LoadCSVData( indianCensusCSVFilePath);
             return csvDataTable.Rows.Count;
         }
         //load india state census data
         public static int LoadIndiaStateCode(string indianStateCensusCSVFilePath)
         {
-            DataTable csvDataTable= CSVBuilder.LoadCSVData(indianStateCensusCSVFilePath);
+            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            DataTable csvDataTable= csvBuilder.LoadCSVData(indianStateCensusCSVFilePath);
             return csvDataTable.Rows.Count;
         }
     }

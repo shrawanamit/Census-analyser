@@ -8,9 +8,9 @@ using System.Text;
 namespace CensusAnalyser
 {
     //build csv file
-    public class CSVBuilder
+    public class CSVBuilder : ICSVBuilder
     {
-        public static DataTable LoadCSVData(string CSVFilePath)
+        public  DataTable LoadCSVData(string CSVFilePath)
         {
             DataTable csvData = new DataTable();
             try
@@ -34,13 +34,13 @@ namespace CensusAnalyser
                 }
                 return csvData;
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException )
             {
-                throw new CensusAnalyzerException(CensusAnalyzerException.ExceptionType.FILE_NOT_FOUND, "");
+                throw new CSVBuilderException(CSVBuilderException.ExceptionType.FILE_NOT_FOUND, "");
             }
             catch (ArgumentNullException)
             {
-                throw new CensusAnalyzerException(CensusAnalyzerException.ExceptionType.EMPTY_FILE, "");
+                throw new CSVBuilderException(CSVBuilderException.ExceptionType.EMPTY_FILE, "");
             }
         }
     }
