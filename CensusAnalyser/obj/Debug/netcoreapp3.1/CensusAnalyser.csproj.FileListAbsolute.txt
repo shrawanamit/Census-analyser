@@ -12,4 +12,9 @@ G:\vs\CensusAnalyser\CensusAnalyser\obj\Debug\netcoreapp3.1\CensusAnalyser.pdb
 G:\vs\CensusAnalyser\CensusAnalyser\obj\Debug\netcoreapp3.1\CensusAnalyser.genruntimeconfig.cache
 G:\vs\CensusAnalyser\CensusAnalyser\bin\Debug\netcoreapp3.1\LumenWorks.Framework.IO.dll
 G:\vs\CensusAnalyser\CensusAnalyser\obj\Debug\netcoreapp3.1\CensusAnalyser.csproj.CopyComplete
+G:\vs\CensusAnalyser\CensusAnalyser\bin\Debug\netcoreapp3.1\CsvHelper.dll
+G:\vs\CensusAnalyser\CensusAnalyser\bin\Debug\netcoreapp3.1\LanguageExt.Core.dll
 G:\vs\CensusAnalyser\CensusAnalyser\obj\Debug\netcoreapp3.1\CensusAnalyser.csproj.CoreCompileInputs.cache
+G:\vs\CensusAnalyser\CensusAnalyser\bin\Debug\netcoreapp3.1\EO.Base.dll
+G:\vs\CensusAnalyser\CensusAnalyser\bin\Debug\netcoreapp3.1\EO.WebBrowser.dll
+G:\vs\CensusAnalyser\CensusAnalyser\bin\Debug\netcoreapp3.1\EO.WebEngine.dll

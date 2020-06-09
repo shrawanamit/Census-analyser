@@ -38,9 +38,25 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[15.0.5, )"
+            },
+            "EO.WebBrowser": {
+              "target": "Package",
+              "version": "[20.1.45, )"
+            },
+            "LanguageExt.Core": {
+              "target": "Package",
+              "version": "[3.4.15, )"
+            },
             "LumenWorksCsvReader": {
               "target": "Package",
               "version": "[4.0.0, )"
+            },
+            "System.Collections.NonGeneric": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [

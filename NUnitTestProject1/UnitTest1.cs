@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using CensusAnalyser;
-using System.Data;
 
 namespace NUnitTestProject1
 {

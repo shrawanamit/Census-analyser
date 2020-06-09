@@ -1,31 +1,18 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using System;
 
 namespace CensusAnalyser
 {
     class IndiaCensusCSV
     {
+        [Name("State")]
         public string State { get; set; }
+        [Name("Population")]
         public int Population { get; set; }
+        [Name("AreaInSqKm")]
         public int AreaInSqKm { get; set; }
+        [Name("DensityPerSqKm")]
         public int DensityPerSqKm { get; set; }
 
-        public IndiaCensusCSV(String state, int population, int areaInSqKm, int densityPerSqKm)
-        {
-                    this.State = state;
-                    this.Population = population;
-                    this.AreaInSqKm = areaInSqKm;
-                    this.DensityPerSqKm = densityPerSqKm;
-        }
-
-        public override string ToString()
-        {
-            return "IndiaCensusCSV{" +
-                        "State='" + State + '\'' +
-                        ", Population='" + Population + '\'' +
-                        ", AreaInSqKm='" + AreaInSqKm + '\'' +
-                        ", DensityPerSqKm='" + DensityPerSqKm + '\'' +
-                       '}';
-        }
-        
     }
 }

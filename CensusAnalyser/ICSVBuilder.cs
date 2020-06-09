@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
+﻿using EO.Internal;
+using System;
+using LanguageExt.ClassInstances;
 
 namespace CensusAnalyser
 {
     interface ICSVBuilder
     {
-      public DataTable LoadCSVData( string csvPath);
+        public int LoadCSVData(string CSVFilePath);
+        public int LoadStateCSVData(string CSVFilePath);
     }
 }

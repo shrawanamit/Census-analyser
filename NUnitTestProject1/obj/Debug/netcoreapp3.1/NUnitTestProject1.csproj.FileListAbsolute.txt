@@ -99,3 +99,8 @@ G:\vs\CensusAnalyser\NUnitTestProject1\obj\Debug\netcoreapp3.1\NUnitTestProject1
 G:\vs\CensusAnalyser\NUnitTestProject1\obj\Debug\netcoreapp3.1\NUnitTestProject1.dll
 G:\vs\CensusAnalyser\NUnitTestProject1\obj\Debug\netcoreapp3.1\NUnitTestProject1.pdb
 G:\vs\CensusAnalyser\NUnitTestProject1\obj\Debug\netcoreapp3.1\NUnitTestProject1.genruntimeconfig.cache
+G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\CsvHelper.dll
+G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\LanguageExt.Core.dll
+G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\EO.Base.dll
+G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\EO.WebBrowser.dll
+G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\EO.WebEngine.dll

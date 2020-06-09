@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,27 +7,12 @@ namespace CensusAnalyser
 {
     class IndiaStateCodeCSV
     {
+        [Name("StateName")]
         public string StateName { get; set; }
+        [Name("StateCode")] 
         public string StateCode { get; set; }
-        public int TIN { get; set; }
+        [Name("TIN")]
+        public int Tin { get; set; }
         
-
-        public IndiaStateCodeCSV(String stateName, String stateCode, int tin)
-        {
-            this.StateName = stateName;
-            this.StateCode = stateCode;
-            this.TIN = tin;
-            
-        }
-
-        public override string ToString()
-        {
-            return "IndiaStateCodeCSV{" +
-                    "stateName='" + StateName + '\'' +
-                    ", stateCode='" + StateCode + '\'' +
-                    ", tin='" + TIN + '\'' +
-                    '}';
-        }
-       
     }
 }

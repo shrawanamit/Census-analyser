@@ -1,40 +1,52 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿using CsvHelper;
+using LanguageExt.ClassInstances;
 using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Globalization;
 using System.IO;
-using System.Text;
+using System.Linq;
 
 namespace CensusAnalyser
 {
     //build csv file
     public class CSVBuilder : ICSVBuilder
     {
-        public  DataTable LoadCSVData(string CSVFilePath)
+        public int LoadCSVData(string CSVFilePath)
         {
-            DataTable csvData = new DataTable();
+            List<IndiaCensusCSV> records = new List<IndiaCensusCSV>(); ;
             try
             {
-                using (TextFieldParser csvReader = new TextFieldParser(CSVFilePath))
+                using (var reader = new StreamReader(CSVFilePath))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    csvReader.SetDelimiters(new string[] { "," });
-                    csvReader.HasFieldsEnclosedInQuotes = true;
-                    string[] colFields = csvReader.ReadFields();
-                    foreach (string column in colFields)
-                    {
-                        DataColumn datecolumn = new DataColumn(column);
-                        datecolumn.AllowDBNull = true;
-                        csvData.Columns.Add(datecolumn);
-                    }
-                    while (!csvReader.EndOfData)
-                    {
-                        string[] fieldData = csvReader.ReadFields();
-                        csvData.Rows.Add(fieldData);
-                    }
+                    records = csv.GetRecords<IndiaCensusCSV>().ToList<IndiaCensusCSV>();
                 }
-                return csvData;
+                return records.Count;
+
             }
-            catch (FileNotFoundException )
+            catch (FileNotFoundException)
+            {
+                throw new CSVBuilderException(CSVBuilderException.ExceptionType.FILE_NOT_FOUND, "");
+            }
+            catch (ArgumentNullException)
+            {
+                throw new CSVBuilderException(CSVBuilderException.ExceptionType.EMPTY_FILE, "");
+            }
+        }
+        public int LoadStateCSVData(string CSVFilePath)
+        {
+            List<IndiaStateCodeCSV> records = new List<IndiaStateCodeCSV>(); ;
+            try
+            {
+                using (var reader = new StreamReader(CSVFilePath))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    records = csv.GetRecords<IndiaStateCodeCSV>().ToList<IndiaStateCodeCSV>();
+                }
+                return records.Count;
+
+            }
+            catch (FileNotFoundException)
             {
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.FILE_NOT_FOUND, "");
             }
