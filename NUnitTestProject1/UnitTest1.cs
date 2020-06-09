@@ -98,5 +98,18 @@ namespace NUnitTestProject1
                 Assert.AreEqual(CensusAnalyzerException.ExceptionType.WRONG_CSV_FILE_TYPE, e.EType);
             }
         }
+        //test case 2.4 : cheaking wrong csv file type
+        [Test]
+        public void GivenWrongIndiaStateCSVWrongDelimeter_ShouldReturn_CustomException()
+        {
+            try
+            {
+                int csvDataCount = CensusAnalyserManager.LoadIndiaStateCode(CENSUS_CSV_FILE_PATH_Wrong_Delimeter);
+            }
+            catch (CensusAnalyzerException e)
+            {
+                Assert.AreEqual(CensusAnalyzerException.ExceptionType.WRONG_DELIMETER, e.EType);
+            }
+        }
     }
 }
