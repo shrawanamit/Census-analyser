@@ -71,5 +71,17 @@ namespace NUnitTestProject1
             int indiaStateCSVDataCount = CensusAnalyserManager.LoadIndiaStateCode(India_STATE_CODE_CSV_FILE_PATH);
             Assert.AreEqual(37, indiaStateCSVDataCount);
         }
+        [Test]
+        public void GivenWrongIndiaStateCSVFilePath_ShouldReturn_CustomException()
+        {
+            try
+            {
+                int csvDataCount = CensusAnalyserManager.LoadIndiaStateCode(WRONG_CSV_FILE_PATH);
+            }
+            catch (CSVBuilderException e)
+            {
+                Assert.AreEqual(CSVBuilderException.ExceptionType.FILE_NOT_FOUND, e.EType);
+            }
+        }
     }
 }
