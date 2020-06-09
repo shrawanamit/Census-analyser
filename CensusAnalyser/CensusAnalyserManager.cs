@@ -2,25 +2,22 @@
 using System;
 using System.Data;
 using System.IO;
-using LumenWorks.Framework.IO.Csv;
-using System.Collections.Generic;
 
 namespace CensusAnalyser
 {
     public class CensusAnalyserManager
     {
         //loading India census data
-        public static DataTable LoadIndiaCensusData(string indianCensusCSVFilePath)
+        public static int LoadIndiaCensusData(string indianCensusCSVFilePath)
         {
             DataTable csvDataTable = LoadCSVData( indianCensusCSVFilePath);
-            return csvDataTable;
-
+            return csvDataTable.Rows.Count;
         }
         //load india state census data
-        public static DataTable LoadIndiaStateCode(string indianStateCensusCSVFilePath)
+        public static int LoadIndiaStateCode(string indianStateCensusCSVFilePath)
         {
             DataTable csvDataTable=LoadCSVData(indianStateCensusCSVFilePath);
-            return csvDataTable;
+            return csvDataTable.Rows.Count;
         }
         //load any csv data
         public static DataTable LoadCSVData(string CSVFilePath)
@@ -39,18 +36,9 @@ namespace CensusAnalyser
                         datecolumn.AllowDBNull = true;
                         csvData.Columns.Add(datecolumn);
                     }
-
                     while (!csvReader.EndOfData)
                     {
                         string[] fieldData = csvReader.ReadFields();
-                        //Making empty value as null
-                        for (int i = 0; i < fieldData.Length; i++)
-                        {
-                            if (fieldData[i] == "")
-                            {
-                                fieldData[i] = null;
-                            }
-                        }
                         csvData.Rows.Add(fieldData);
                     }
                 }
@@ -65,6 +53,5 @@ namespace CensusAnalyser
                 throw new CensusAnalyzerException(CensusAnalyzerException.ExceptionType.EMPTY_FILE, "");
             }
         }
-
-        }
     }
+}
