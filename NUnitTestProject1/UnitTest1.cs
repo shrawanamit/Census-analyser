@@ -61,7 +61,21 @@ namespace NUnitTestProject1
             {
                 Assert.AreEqual(CSVBuilderException.ExceptionType.WRONG_DELIMETER, e.EType);
             }
-            
+
+        }
+        //test case 1.5 : cheaking wrong header in csv file
+        [Test]
+        public void GivenWrongCSVWrongHeader_ShouldReturn_CustomException()
+        {
+            try
+            {
+                int csvDataCount = CensusAnalyserManager.LoadIndiaCensusData(India_STATE_CODE_CSV_FILE_PATH);
+            }
+            catch (CSVBuilderException e)
+            {
+                Assert.AreEqual(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, e.EType);
+            }
+
         }
 
         //test case 2.1 : cheaking no of records in india state csv
@@ -99,7 +113,7 @@ namespace NUnitTestProject1
             }
            
         }
-        //test case 2.4 : cheaking wrong csv file type
+        //test case 2.4 : cheaking wrong Delimeter in csv file 
         [Test]
         public void GivenWrongIndiaStateCSVWrongDelimeter_ShouldReturn_CustomException()
         {
@@ -112,11 +126,27 @@ namespace NUnitTestProject1
                 Assert.AreEqual(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, e.EType);
             }
         }
+        /// <summary>
+        /// //test case 2.5 : cheaking  header in csv file
+        /// </summary>
+        [Test]
+        public void GivenWrongIndiaStateCSVWrongHeader_ShouldReturn_CustomException()
+        {
+            try
+            {
+                int csvDataCount = CensusAnalyserManager.LoadIndiaStateCode(India_CENSUS_CSV_FILE_PATH);
+            }
+            catch (CSVBuilderException e)
+            {
+                Assert.AreEqual(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, e.EType);
+            }
+
+        }
         //[Test]
         //public void givenIndianStateCsv_whenSortedOnState_shouldReturnShortedResult()
         //{
         //    int[] indiaCensusCSVDataCount = CensusAnalyserManager.LoadIndiaCensusData(India_CENSUS_CSV_FILE_PATH);
-            
+
         //    Assert..AreEqual("Andhra Pradesh", indiaCensusCSVDataCount[0].state);
         //}
     }
