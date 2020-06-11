@@ -3,7 +3,7 @@ using System;
 
 namespace CensusAnalyser
 {
-    class IndiaCensusCSV
+    public class IndiaCensusCSV
     {
         [Name("State")]
         public string State { get; set; }

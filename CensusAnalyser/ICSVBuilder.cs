@@ -1,12 +1,16 @@
 ﻿using EO.Internal;
 using System;
 using LanguageExt.ClassInstances;
+using System.Collections.Generic;
+using NPOI.SS.Formula.Functions;
 
 namespace CensusAnalyser
 {
     interface ICSVBuilder
     {
-        public int LoadCSVData(string CSVFilePath);
-        public int LoadStateCSVData(string CSVFilePath);
+        public List<IndiaCensusCSV> LoadCSVData(string CSVFilePath);
+        //List<IndiaCensusCSV> LoadCSVData(string CSVFilePath);
+        public List<IndiaStateCodeCSV> LoadStateCSVData(string CSVFilePath);
+        //List<IndiaStateCodeCSV> LoadStateCSVData(string CSVFilePath);
     }
 }

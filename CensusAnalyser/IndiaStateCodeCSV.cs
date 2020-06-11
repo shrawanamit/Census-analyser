@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CensusAnalyser
 {
-    class IndiaStateCodeCSV
+    public class IndiaStateCodeCSV
     {
         [Name("StateName")]
         public string StateName { get; set; }

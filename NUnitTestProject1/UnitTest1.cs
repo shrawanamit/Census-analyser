@@ -8,7 +8,7 @@ namespace NUnitTestProject1
         [SetUp]
         public void Setup()
         {
-            
+
         }
 
         public const string India_CENSUS_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusData.csv";
@@ -33,7 +33,7 @@ namespace NUnitTestProject1
             }
             catch (CSVBuilderException e)
             {
-                Assert.AreEqual(CSVBuilderException.ExceptionType.FILE_NOT_FOUND, e.EType);
+                Assert.AreEqual(CSVBuilderException.ExceptionType.WRONG_CSV_FILE_PATH, e.EType);
             }
         }
         //test case 1.3 : cheaking wrong csv file type
@@ -57,10 +57,11 @@ namespace NUnitTestProject1
             {
                 int csvDataCount = CensusAnalyserManager.LoadIndiaCensusData(CENSUS_CSV_FILE_PATH_Wrong_Delimeter);
             }
-            catch (CensusAnalyzerException e)
+            catch (CSVBuilderException e)
             {
-                Assert.AreEqual(CensusAnalyzerException.ExceptionType.WRONG_DELIMETER, e.EType);
+                Assert.AreEqual(CSVBuilderException.ExceptionType.WRONG_DELIMETER, e.EType);
             }
+            
         }
 
         //test case 2.1 : cheaking no of records in india state csv
@@ -81,7 +82,7 @@ namespace NUnitTestProject1
             }
             catch (CSVBuilderException e)
             {
-                Assert.AreEqual(CSVBuilderException.ExceptionType.FILE_NOT_FOUND, e.EType);
+                Assert.AreEqual(CSVBuilderException.ExceptionType.WRONG_CSV_FILE_PATH, e.EType);
             }
         }
         //test case 2.3 : cheaking wrong csv file type
@@ -92,10 +93,11 @@ namespace NUnitTestProject1
             {
                 int csvDataCount = CensusAnalyserManager.LoadIndiaStateCode(CENSUS_CSV_FILE_PATH_Wrong_Type);
             }
-            catch (CensusAnalyzerException e)
+            catch (CSVBuilderException e)
             {
-                Assert.AreEqual(CensusAnalyzerException.ExceptionType.WRONG_CSV_FILE_TYPE, e.EType);
+                Assert.AreEqual(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, e.EType);
             }
+           
         }
         //test case 2.4 : cheaking wrong csv file type
         [Test]
@@ -105,10 +107,17 @@ namespace NUnitTestProject1
             {
                 int csvDataCount = CensusAnalyserManager.LoadIndiaStateCode(CENSUS_CSV_FILE_PATH_Wrong_Delimeter);
             }
-            catch (CensusAnalyzerException e)
+            catch (CSVBuilderException e)
             {
-                Assert.AreEqual(CensusAnalyzerException.ExceptionType.WRONG_DELIMETER, e.EType);
+                Assert.AreEqual(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, e.EType);
             }
         }
+        //[Test]
+        //public void givenIndianStateCsv_whenSortedOnState_shouldReturnShortedResult()
+        //{
+        //    int[] indiaCensusCSVDataCount = CensusAnalyserManager.LoadIndiaCensusData(India_CENSUS_CSV_FILE_PATH);
+            
+        //    Assert..AreEqual("Andhra Pradesh", indiaCensusCSVDataCount[0].state);
+        //}
     }
 }
