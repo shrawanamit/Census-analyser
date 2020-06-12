@@ -87,6 +87,41 @@ namespace CensusAnalyser
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, "");
             }
         }
-      
+        /// <summary>
+        /// Load US census Data
+        /// </summary>
+        /// <param name="CSVFilePath"></param>
+        /// <returns>List of data</returns>
+        public List<USCensusCSV> LoadUSCensusCSVData(string CSVFilePath)
+        {
+            List<USCensusCSV> records = new List<USCensusCSV>();
+            try
+            {
+                //using csvHelper to read csv Data and convert into list
+                using (var reader = new StreamReader(CSVFilePath))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    records = csv.GetRecords<USCensusCSV>().ToList();
+                }
+                return records;
+            }
+            catch (FileNotFoundException)
+            {
+                throw new CSVBuilderException(CSVBuilderException.ExceptionType.FILE_NOT_FOUND, "");
+            }
+            catch (DirectoryNotFoundException)
+            {
+                throw new CSVBuilderException(CSVBuilderException.ExceptionType.WRONG_CSV_FILE_PATH, "");
+            }
+            catch (CsvHelper.MissingFieldException)
+            {
+                throw new CSVBuilderException(CSVBuilderException.ExceptionType.WRONG_DELIMETER, "");
+            }
+            catch (CsvHelper.HeaderValidationException)
+            {
+                throw new CSVBuilderException(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, "");
+            }
+        }
+
     }
 }

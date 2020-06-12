@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NPOI.SS.Formula.Functions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -95,6 +96,27 @@ namespace CensusAnalyser
                                             .ToList();
             string json = JsonConvert.SerializeObject(sorted);
             return json;
+        }
+        /// <summary>
+        /// short Indian State census Data According to Area of state wise convert into json
+        /// </summary>
+        /// <returns>json string</returns>
+        public static string GetStateAreaWiseSortedCensusData(string india_CENSUS_CSV_FILE_PATH)
+        {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            List<IndiaCensusCSV> indianCensusData = csvBuilder.LoadCSVData(india_CENSUS_CSV_FILE_PATH);
+            List<IndiaCensusCSV> sorted = indianCensusData
+                                            .OrderBy(x => x.AreaInSqKm)
+                                            .ToList();
+            string json = JsonConvert.SerializeObject(sorted);
+            return json;
+        }
+        public static int LoadUSCensusData(string USCensusCSVFilePath)
+        {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            List<USCensusCSV> USCensusData = csvBuilder.LoadUSCensusCSVData(USCensusCSVFilePath);
+            Dictionary<string, USCensusCSV> USCensusDataDict = USCensusData.ToDictionary(m => m.State);
+            return USCensusDataDict.Count;
         }
     }
 }

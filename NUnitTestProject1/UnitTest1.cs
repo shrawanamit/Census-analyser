@@ -22,7 +22,11 @@ namespace NUnitTestProject1
         public const string CENSUS_CSV_FILE_PATH_Wrong_Type = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusData.txt";
         public const string CENSUS_CSV_FILE_PATH_Wrong_Delimeter = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCensusDataWrongDelimeter.csv";
         public const string India_STATE_CODE_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\NUnitTestProject1\IndiaStateCode.csv";
-        //test case 1.1 : cheaking no of records
+        public const string US_CENSUS_CSV_FILE_PATH = @"G:\vs\CensusAnalyser\NUnitTestProject1\CSVFile\USCensusData.csv";
+         
+        /// <summary>
+        /// count no of record in india census csv
+        /// </summary>        
         [Test]
         public void GivenCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
         {
@@ -167,7 +171,7 @@ namespace NUnitTestProject1
         ///// use case 4:sorted indian State csv According to state code wise 
         ///// </summary>
         [Test]
-        public void givenIndianStateCensusCsv_whenSortedOnState_shouldReturnShortedResult()
+        public void GivenIndianStateCensusCsv_whenSortedOnState_shouldReturnShortedResult()
         {
             string indiaStateCensusCSVDataJsonString = CensusAnalyserManager.GetStateCodeWiseSortedCensusData(India_STATE_CODE_CSV_FILE_PATH);
             List<IndiaStateCodeCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaStateCodeCSV>>(indiaStateCensusCSVDataJsonString);
@@ -182,7 +186,7 @@ namespace NUnitTestProject1
         ///// use case 5:sorted indian State csv According to Population wise 
         ///// </summary>
         [Test]
-        public void givenIndianStateCensusCsv_whenSortedOnPopulation_shouldReturnShortedResult()
+        public void GivenIndianStateCensusCsv_whenSortedOnPopulation_shouldReturnShortedResult()
         {
             string indiaCensusCSVDataJsonString = CensusAnalyserManager.GetStateWiseSortedCensusData(India_CENSUS_CSV_FILE_PATH);
             List<IndiaCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaCensusCSV>>(indiaCensusCSVDataJsonString);
@@ -196,7 +200,7 @@ namespace NUnitTestProject1
         ///// use case 6:sorted indian State csv According to Population wise 
         ///// </summary>
         [Test]
-        public void givenIndianStateCensusCsv_whenSortedOnPopulationDencity_shouldReturnShortedResult()
+        public void GivenIndianStateCensusCsv_whenSortedOnPopulationDencity_shouldReturnShortedResult()
         {
             string indiaCensusCSVDataJsonString = CensusAnalyserManager.GetPopulaionPerSqKmWiseSortedCensusData(India_CENSUS_CSV_FILE_PATH);
             List<IndiaCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaCensusCSV>>(indiaCensusCSVDataJsonString);
@@ -206,5 +210,30 @@ namespace NUnitTestProject1
                 break;
             }
         }
+        ///// <summary>
+        ///// use case 6:sorted indian State csv According to Population wise 
+        ///// </summary>
+        [Test]
+        public void GivenIndianStateCensusCsv_whenSortedOnStateArea_shouldReturnShortedResult()
+        {
+            string indiaCensusCSVDataJsonString = CensusAnalyserManager.GetStateAreaWiseSortedCensusData(India_CENSUS_CSV_FILE_PATH);
+            List<IndiaCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaCensusCSV>>(indiaCensusCSVDataJsonString);
+            foreach (IndiaCensusCSV str in listObject)
+            {
+                Assert.AreEqual("Goa", str.State);
+                break;
+            }
+        }
+
+        /// <summary>
+        /// count no of record in india census csv
+        /// </summary>        
+        [Test]
+        public void GivenUSCensusCSVFile_ShouldReturn_CorrectNumberOfRecords()
+        {
+            int USCensusCSVDataCount = CensusAnalyserManager.LoadUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            Assert.AreEqual(51, USCensusCSVDataCount);
+        }
+        
     }
 }

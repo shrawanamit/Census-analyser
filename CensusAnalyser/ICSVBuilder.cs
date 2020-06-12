@@ -11,6 +11,7 @@ namespace CensusAnalyser
         public List<IndiaCensusCSV> LoadCSVData(string CSVFilePath);
        
         public List<IndiaStateCodeCSV> LoadStateCSVData(string CSVFilePath);
-       
+        public List<USCensusCSV> LoadUSCensusCSVData(string CSVFilePath);
+
     }
 }
