@@ -177,5 +177,20 @@ namespace NUnitTestProject1
                 break;
             }
         }
+
+        ///// <summary>
+        ///// use case 5:sorted indian State csv According to Population wise 
+        ///// </summary>
+        [Test]
+        public void givenIndianStateCensusCsv_whenSortedOnPopulation_shouldReturnShortedResult()
+        {
+            string indiaCensusCSVDataJsonString = CensusAnalyserManager.GetStateWiseSortedCensusData(India_CENSUS_CSV_FILE_PATH);
+            List<IndiaCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaCensusCSV>>(indiaCensusCSVDataJsonString);
+            foreach (IndiaCensusCSV str in listObject)
+            {
+                Assert.AreEqual("Andhra Pradesh", str.State);
+                break;
+            }
+        }
     }
 }
