@@ -52,7 +52,7 @@ namespace CensusAnalyser
         }
 
         /// <summary>
-        /// short Indian census Data stateCode wise convert into json
+        /// short Indian State census Data stateCode wise convert into json
         /// </summary>
         /// <returns>json string</returns>
         public static string GetStateCodeWiseSortedCensusData(string indianStateCensusCSVFilePath)
@@ -66,10 +66,10 @@ namespace CensusAnalyser
             return json;
         }
         /// <summary>
-        /// 
+        /// short Indian census Data Population wise convert into json string
         /// </summary>
         /// <param name="indianCensusCSVFilePath"></param>
-        /// <returns></returns>
+        /// <returns>json string</returns>
         public static string GetPopulationWiseSortedCensusData(string indianCensusCSVFilePath)
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
@@ -78,6 +78,21 @@ namespace CensusAnalyser
                                           .OrderBy(x => x.Population)
                                           .Reverse()
                                           .ToList();
+            string json = JsonConvert.SerializeObject(sorted);
+            return json;
+        }
+
+        /// <summary>
+        /// short Indian State census Data Population per sq kilometer wise convert into json
+        /// </summary>
+        /// <returns>json string</returns>
+        public static string GetPopulaionPerSqKmWiseSortedCensusData(string indianCensusCSVFilePath)
+        {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            List<IndiaCensusCSV> indianCensusData = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
+            List<IndiaCensusCSV> sorted = indianCensusData
+                                            .OrderBy(x => x.DensityPerSqKm)
+                                            .ToList();
             string json = JsonConvert.SerializeObject(sorted);
             return json;
         }
