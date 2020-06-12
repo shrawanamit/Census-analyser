@@ -14,5 +14,16 @@ namespace CensusAnalyser
         [Name("DensityPerSqKm")]
         public int DensityPerSqKm { get; set; }
 
+       public
+        override string ToString()
+        {
+            return "IndiaCensusCSV{" +
+                    "State='" + State + '\'' +
+                    ", Population='" + Population + '\'' +
+                    ", AreaInSqKm='" + AreaInSqKm + '\'' +
+                    ", DensityPerSqKm='" + DensityPerSqKm + '\'' +
+                    '}';
+        }
+
     }
 }

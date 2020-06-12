@@ -6,8 +6,9 @@ namespace CensusAnalyser
     [Serializable]
     public class CensusAnalyzerException : Exception
     {
-       
-
+        /// <summary>
+        /// Declearing custum Exception message
+        /// </summary>
         public enum ExceptionType
         {
             WRONG_CSV_FILE_PATH, WRONG_CSV_FILE_TYPE,

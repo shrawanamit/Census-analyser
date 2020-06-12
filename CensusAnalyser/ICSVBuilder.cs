@@ -9,8 +9,8 @@ namespace CensusAnalyser
     interface ICSVBuilder
     {
         public List<IndiaCensusCSV> LoadCSVData(string CSVFilePath);
-        //List<IndiaCensusCSV> LoadCSVData(string CSVFilePath);
+       
         public List<IndiaStateCodeCSV> LoadStateCSVData(string CSVFilePath);
-        //List<IndiaStateCodeCSV> LoadStateCSVData(string CSVFilePath);
+       
     }
 }

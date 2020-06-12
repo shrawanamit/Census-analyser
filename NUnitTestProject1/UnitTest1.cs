@@ -1,5 +1,11 @@
 using NUnit.Framework;
 using CensusAnalyser;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using Nancy.Json;
+using System.Linq;
+using System;
 
 namespace NUnitTestProject1
 {
@@ -142,12 +148,34 @@ namespace NUnitTestProject1
             }
 
         }
-        //[Test]
-        //public void givenIndianStateCsv_whenSortedOnState_shouldReturnShortedResult()
-        //{
-        //    int[] indiaCensusCSVDataCount = CensusAnalyserManager.LoadIndiaCensusData(India_CENSUS_CSV_FILE_PATH);
+        /// <summary>
+        /// use case 3:sorted indian census csv According to state wise 
+        /// </summary>
+        [Test]
+        public void givenIndianCensusCsv_whenSortedOnState_shouldReturnShortedResult()
+        {
+            string indiaCensusCSVDataJsonString = CensusAnalyserManager.GetStateWiseSortedCensusData(India_CENSUS_CSV_FILE_PATH);
+            List<IndiaCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaCensusCSV>>(indiaCensusCSVDataJsonString);
+            foreach (IndiaCensusCSV str in listObject)
+            {
+                Assert.AreEqual("Andhra Pradesh", str.State);
+                break;
+            }
+        }
 
-        //    Assert..AreEqual("Andhra Pradesh", indiaCensusCSVDataCount[0].state);
-        //}
+        ///// <summary>
+        ///// use case 4:sorted indian State csv According to state code wise 
+        ///// </summary>
+        [Test]
+        public void givenIndianStateCensusCsv_whenSortedOnState_shouldReturnShortedResult()
+        {
+            string indiaStateCensusCSVDataJsonString = CensusAnalyserManager.GetStateCodeWiseSortedCensusData(India_STATE_CODE_CSV_FILE_PATH);
+            List<IndiaStateCodeCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaStateCodeCSV>>(indiaStateCensusCSVDataJsonString);
+            foreach (IndiaStateCodeCSV str in listObject)
+            {
+                Assert.AreEqual("AD", str.StateCode);
+                break;
+            }
+        }
     }
 }

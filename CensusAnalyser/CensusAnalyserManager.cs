@@ -1,5 +1,7 @@
-﻿using NPOI.SS.Formula.Functions;
+﻿using Newtonsoft.Json;
+using NPOI.SS.Formula.Functions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CensusAnalyser
 {
@@ -9,8 +11,8 @@ namespace CensusAnalyser
         public static int LoadIndiaCensusData(string indianCensusCSVFilePath)
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<IndiaCensusCSV> csvDataTable = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
-            return csvDataTable.Count;
+            List<IndiaCensusCSV> indianCensusData = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
+            return indianCensusData.Count;
         }
         
         /// <summary>
@@ -24,10 +26,35 @@ namespace CensusAnalyser
             List<IndiaStateCodeCSV> csvDataTable = csvBuilder.LoadStateCSVData(indianStateCensusCSVFilePath);
             return csvDataTable.Count;
         }
-        public string GetStateWiseSortedCensusData(string csvFilePath) 
+        /// <summary>
+        /// short Indian census Data state wise convert into json
+        /// </summary>
+        /// <param name="indianCensusCSVFilePath"></param>
+        /// <returns>json string</returns>
+        public static string GetStateWiseSortedCensusData(string indianCensusCSVFilePath) 
         {
-
-            return null;
+            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            List<IndiaCensusCSV> indianCensusData = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
+            List<IndiaCensusCSV> sorted = indianCensusData
+                                          .OrderBy(x => x.State)
+                                          .ToList();
+            string json = JsonConvert.SerializeObject(sorted);
+            return json;
+        }
+        /// <summary>
+        /// short Indian census Data stateCode wise convert into json
+        /// </summary>
+        /// <param name="indianStateCensusCSVFilePath"></param>
+        /// <returns>json string</returns>
+        public static string GetStateCodeWiseSortedCensusData(string indianStateCensusCSVFilePath)
+        {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            List<IndiaStateCodeCSV> indiaStateCSVData = csvBuilder.LoadStateCSVData(indianStateCensusCSVFilePath);
+            List<IndiaStateCodeCSV> sorted = indiaStateCSVData
+                                            .OrderBy(x => x.StateCode)
+                                            .ToList();
+            string json = JsonConvert.SerializeObject(sorted);
+            return json;
         }
     }
 }

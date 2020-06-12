@@ -94,7 +94,6 @@ G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\NUnitTestProject1
 G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\NUnitTestProject1.pdb
 G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\LumenWorks.Framework.IO.dll
 G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\CensusAnalyser.pdb
-G:\vs\CensusAnalyser\NUnitTestProject1\obj\Debug\netcoreapp3.1\NUnitTestProject1.csproj.CoreCompileInputs.cache
 G:\vs\CensusAnalyser\NUnitTestProject1\obj\Debug\netcoreapp3.1\NUnitTestProject1.csproj.CopyComplete
 G:\vs\CensusAnalyser\NUnitTestProject1\obj\Debug\netcoreapp3.1\NUnitTestProject1.dll
 G:\vs\CensusAnalyser\NUnitTestProject1\obj\Debug\netcoreapp3.1\NUnitTestProject1.pdb
@@ -119,3 +118,8 @@ G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\runtimes\win\lib\
 G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Drawing.Common.dll
 G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Drawing.Common.dll
 G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.PlatformAbstractions.dll
+G:\vs\CensusAnalyser\NUnitTestProject1\bin\Debug\netcoreapp3.1\Nancy.dll
+G:\vs\CensusAnalyser\NUnitTestProject1\obj\Debug\netcoreapp3.1\NUnitTestProject1.csproj.CoreCompileInputs.cache

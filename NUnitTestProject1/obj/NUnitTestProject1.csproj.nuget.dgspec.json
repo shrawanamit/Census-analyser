@@ -144,6 +144,10 @@
               "target": "Package",
               "version": "[3.16.1, )"
             },
+            "Nancy": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
             "nunit": {
               "target": "Package",
               "version": "[3.12.0, )"

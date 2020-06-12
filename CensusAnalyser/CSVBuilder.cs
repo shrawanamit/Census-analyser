@@ -24,11 +24,11 @@ namespace CensusAnalyser
             List<IndiaCensusCSV> records = new List<IndiaCensusCSV>(); ;
             try
             {
+                //using csvHelper to read csv Data and convert into list
                 using (var reader = new StreamReader(CSVFilePath))
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    records = csv.GetRecords<IndiaCensusCSV>().ToList<IndiaCensusCSV>();
-                    //string json = JsonConvert.SerializeObject(records);
+                    records = csv.GetRecords<IndiaCensusCSV>().ToList();
                 }
                 return records;
 
@@ -61,10 +61,11 @@ namespace CensusAnalyser
             List<IndiaStateCodeCSV> records = new List<IndiaStateCodeCSV>();
             try
             {
+                //using csvHelper to read csv Data and convert into list
                 using (var reader = new StreamReader(CSVFilePath))
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    records = csv.GetRecords<IndiaStateCodeCSV>().ToList<IndiaStateCodeCSV>();
+                    records = csv.GetRecords<IndiaStateCodeCSV>().ToList();
                 }
                 return records;
             }
