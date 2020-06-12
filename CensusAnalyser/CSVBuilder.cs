@@ -21,7 +21,8 @@ namespace CensusAnalyser
         /// <returns>List of csv data</returns>
         public List<IndiaCensusCSV> LoadCSVData(string CSVFilePath)
         {
-            List<IndiaCensusCSV> records = new List<IndiaCensusCSV>(); ;
+            List<IndiaCensusCSV> records = new List<IndiaCensusCSV>(); 
+            //Dictionary<string, IndiaCensusCSV> records = new Dictionary<string, IndiaCensusCSV>();
             try
             {
                 //using csvHelper to read csv Data and convert into list
