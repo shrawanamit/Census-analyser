@@ -1,9 +1,5 @@
 ﻿using CsvHelper;
 using LanguageExt;
-using LanguageExt.ClassInstances;
-using Newtonsoft.Json;
-using NPOI.SS.Formula.Functions;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -82,7 +78,7 @@ namespace CensusAnalyser
             {
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.WRONG_DELIMETER, "");
             }
-            catch (CsvHelper.HeaderValidationException)
+            catch (HeaderValidationException)
             {
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, "");
             }

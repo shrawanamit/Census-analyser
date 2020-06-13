@@ -293,7 +293,21 @@ namespace NUnitTestProject1
             {
                 Assert.AreEqual(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, e.EType);
             }
-
         }
+        /// <summary>
+        ///use case 9: US Census Csv when Sorted On Population
+        /// </summary>
+        [Test]
+        public void GivenUSCensusCsv_whenSortedOnPopulation_shouldReturnShortedResult()
+        {
+            string usCensusCSVDataJsonString = CensusAnalyserManager.GetPopulationWiseSortedUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            List<USCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<USCensusCSV>>(usCensusCSVDataJsonString);
+            foreach (USCensusCSV str in listObject)
+            {
+                Assert.AreEqual("California", str.State);
+                break;
+            }
+        }
+
     }
 }

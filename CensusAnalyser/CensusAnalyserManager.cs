@@ -118,5 +118,22 @@ namespace CensusAnalyser
             Dictionary<string, USCensusCSV> USCensusDataDict = USCensusData.ToDictionary(m => m.State);
             return USCensusDataDict.Count;
         }
+        /// <summary>
+        /// short US census Data Population wise convert into json string
+        /// </summary>
+        /// <param name="indianCensusCSVFilePath"></param>
+        /// <returns>json string</returns>
+        public static string GetPopulationWiseSortedUSCensusData(string usCensusCSVFilePath)
+        {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            List<USCensusCSV> USCensusData = csvBuilder.LoadUSCensusCSVData(usCensusCSVFilePath);
+            List<USCensusCSV> sorted = USCensusData
+                                          .OrderBy(x => x.Population)
+                                          .Reverse()
+                                          .ToList();
+            string json = JsonConvert.SerializeObject(sorted);
+            return json;
+        }
+
     }
 }
