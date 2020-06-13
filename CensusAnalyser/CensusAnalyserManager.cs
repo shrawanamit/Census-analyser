@@ -135,5 +135,28 @@ namespace CensusAnalyser
             return json;
         }
 
+        public static string GetPopulationDensityWiseSortedUSCensusData(string uS_CENSUS_CSV_FILE_PATH)
+        {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            List<USCensusCSV> USCensusData = csvBuilder.LoadUSCensusCSVData(uS_CENSUS_CSV_FILE_PATH);
+            List<USCensusCSV> sorted = USCensusData
+                                          .OrderBy(x => x.PopulationDensity)
+                                          .Reverse()
+                                          .ToList();
+            string json = JsonConvert.SerializeObject(sorted);
+            return json;
+        }
+
+        public static string GetAreaWiseSortedUSCensusData(string uS_CENSUS_CSV_FILE_PATH)
+        {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            List<USCensusCSV> USCensusData = csvBuilder.LoadUSCensusCSVData(uS_CENSUS_CSV_FILE_PATH);
+            List<USCensusCSV> sorted = USCensusData
+                                          .OrderBy(x => x.totalArea)
+                                          .Reverse()
+                                          .ToList();
+            string json = JsonConvert.SerializeObject(sorted);
+            return json;
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace CensusAnalyser
         public int Population { get; set; }
         [Name("PopulationDensity")]
         public float PopulationDensity { get; set; }
-        
-
+        [Name("TotalArea")]
+        public float totalArea { get; set; }
     }
 }

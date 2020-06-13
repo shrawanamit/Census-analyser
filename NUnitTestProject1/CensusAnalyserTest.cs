@@ -309,5 +309,33 @@ namespace NUnitTestProject1
             }
         }
 
+        /// <summary>
+        ///use case 10: US Census Csv when Sorted On Population
+        /// </summary>
+        [Test]
+        public void GivenUSCensusCsv_whenSortedOnPopulationDensity_shouldReturnShortedResult()
+        {
+            string usCensusCSVDataJsonString = CensusAnalyserManager.GetPopulationDensityWiseSortedUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            List<USCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<USCensusCSV>>(usCensusCSVDataJsonString);
+            foreach (USCensusCSV str in listObject)
+            {
+                Assert.AreEqual("District of Columbia", str.State);
+                break;
+            }
+        }
+        /// <summary>
+        ///use case 10: US Census Csv when Sorted On Population
+        /// </summary>
+        [Test]
+        public void GivenUSCensusCsv_whenSortedOnArea_shouldReturnShortedResult()
+        {
+            string usCensusCSVDataJsonString = CensusAnalyserManager.GetAreaWiseSortedUSCensusData(US_CENSUS_CSV_FILE_PATH);
+            List<USCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<USCensusCSV>>(usCensusCSVDataJsonString);
+            foreach (USCensusCSV str in listObject)
+            {
+                Assert.AreEqual("Alaska", str.State);
+                break;
+            }
+        }
     }
 }
