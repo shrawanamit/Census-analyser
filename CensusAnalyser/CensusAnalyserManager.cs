@@ -8,10 +8,7 @@ namespace CensusAnalyser
 {
     public class CensusAnalyserManager
     {
-
-        static Dictionary<string, IndiaCensusCSV> dictionaryIndianCensus = new Dictionary<string,IndiaCensusCSV>();
-        static Dictionary<string, IndiaStateCodeCSV> dicionarytStateCensus = new Dictionary<string, IndiaStateCodeCSV>();
-
+      
         /// <summary>
         /// load india state census data into map
         /// </summary>
@@ -19,8 +16,8 @@ namespace CensusAnalyser
         public static int LoadIndiaCensusData(string indianCensusCSVFilePath)
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<IndiaCensusCSV> indianCensusData = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
-            Dictionary<string, IndiaCensusCSV> dictionaryIndianCensus = indianCensusData.ToDictionary(m => m.State);
+            List<CensusDAO> indianCensusData = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
+            Dictionary<string, CensusDAO> dictionaryIndianCensus = indianCensusData.ToDictionary(m => m.State);
             return dictionaryIndianCensus.Count;
         }
         
@@ -31,9 +28,21 @@ namespace CensusAnalyser
         public static int LoadIndiaStateCode(string indianStateCensusCSVFilePath)
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<IndiaStateCodeCSV> csvDataTable = csvBuilder.LoadStateCSVData(indianStateCensusCSVFilePath);
-            dicionarytStateCensus = csvDataTable.ToDictionary(x => x.StateName);
+            List<IndiaStateDao> csvDataTable = csvBuilder.LoadStateCSVData(indianStateCensusCSVFilePath);
+            Dictionary<string, IndiaStateDao> dicionarytStateCensus = csvDataTable.ToDictionary(x => x.StateCode);
             return dicionarytStateCensus.Count;
+        }
+
+        /// <summary>
+        /// load US state census data into map
+        /// </summary>
+        /// <returns>size of dictionary</returns>
+        public static int LoadUSCensusData(string USCensusCSVFilePath)
+        {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
+            List<USCensusdao> USCensusData = csvBuilder.LoadUSCensusCSVData(USCensusCSVFilePath);
+            Dictionary<string, USCensusdao> USCensusDataDict = USCensusData.ToDictionary(x => x.State);
+            return USCensusDataDict.Count;
         }
 
 
@@ -44,8 +53,8 @@ namespace CensusAnalyser
         public static string GetStateWiseSortedCensusData(string indianCensusCSVFilePath) 
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<IndiaCensusCSV> indianCensusData = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
-            List<IndiaCensusCSV> sorted = indianCensusData
+            List<CensusDAO> indianCensusData = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
+            List<CensusDAO> sorted = indianCensusData
                                           .OrderBy(x => x.State)
                                           .ToList();
             string json = JsonConvert.SerializeObject(sorted);
@@ -59,13 +68,14 @@ namespace CensusAnalyser
         public static string GetStateCodeWiseSortedCensusData(string indianStateCensusCSVFilePath)
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<IndiaStateCodeCSV> indiaStateCSVData = csvBuilder.LoadStateCSVData(indianStateCensusCSVFilePath);
-            List<IndiaStateCodeCSV> sorted = indiaStateCSVData
+            List<IndiaStateDao> indiaStateCSVData = csvBuilder.LoadStateCSVData(indianStateCensusCSVFilePath);
+            List<IndiaStateDao> sorted = indiaStateCSVData
                                             .OrderBy(x => x.StateCode)
                                             .ToList();
             string json = JsonConvert.SerializeObject(sorted);
             return json;
         }
+
         /// <summary>
         /// short Indian census Data Population wise convert into json string
         /// </summary>
@@ -74,8 +84,8 @@ namespace CensusAnalyser
         public static string GetPopulationWiseSortedCensusData(string indianCensusCSVFilePath)
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<IndiaCensusCSV> indianCensusData = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
-            List<IndiaCensusCSV> sorted = indianCensusData
+            List<CensusDAO> indianCensusData = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
+            List<CensusDAO> sorted = indianCensusData
                                           .OrderBy(x => x.Population)
                                           .Reverse()
                                           .ToList();
@@ -90,8 +100,8 @@ namespace CensusAnalyser
         public static string GetPopulaionPerSqKmWiseSortedCensusData(string indianCensusCSVFilePath)
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<IndiaCensusCSV> indianCensusData = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
-            List<IndiaCensusCSV> sorted = indianCensusData
+            List<CensusDAO> indianCensusData = csvBuilder.LoadCSVData(indianCensusCSVFilePath);
+            List<CensusDAO> sorted = indianCensusData
                                             .OrderBy(x => x.DensityPerSqKm)
                                             .ToList();
             string json = JsonConvert.SerializeObject(sorted);
@@ -104,20 +114,14 @@ namespace CensusAnalyser
         public static string GetStateAreaWiseSortedCensusData(string india_CENSUS_CSV_FILE_PATH)
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<IndiaCensusCSV> indianCensusData = csvBuilder.LoadCSVData(india_CENSUS_CSV_FILE_PATH);
-            List<IndiaCensusCSV> sorted = indianCensusData
+            List<CensusDAO> indianCensusData = csvBuilder.LoadCSVData(india_CENSUS_CSV_FILE_PATH);
+            List<CensusDAO> sorted = indianCensusData
                                             .OrderBy(x => x.AreaInSqKm)
                                             .ToList();
             string json = JsonConvert.SerializeObject(sorted);
             return json;
         }
-        public static int LoadUSCensusData(string USCensusCSVFilePath)
-        {
-            ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<USCensusCSV> USCensusData = csvBuilder.LoadUSCensusCSVData(USCensusCSVFilePath);
-            Dictionary<string, USCensusCSV> USCensusDataDict = USCensusData.ToDictionary(m => m.State);
-            return USCensusDataDict.Count;
-        }
+      
         /// <summary>
         /// short US census Data Population wise convert into json string
         /// </summary>
@@ -126,8 +130,8 @@ namespace CensusAnalyser
         public static string GetPopulationWiseSortedUSCensusData(string usCensusCSVFilePath)
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<USCensusCSV> USCensusData = csvBuilder.LoadUSCensusCSVData(usCensusCSVFilePath);
-            List<USCensusCSV> sorted = USCensusData
+            List<USCensusdao> USCensusData = csvBuilder.LoadUSCensusCSVData(usCensusCSVFilePath);
+            List<USCensusdao> sorted = USCensusData
                                           .OrderBy(x => x.Population)
                                           .Reverse()
                                           .ToList();
@@ -135,28 +139,40 @@ namespace CensusAnalyser
             return json;
         }
 
+        /// <summary>
+        /// short US census Data Density Per SqKm wise convert into json string
+        /// </summary>
+        /// <param name="indianCensusCSVFilePath"></param>
+        /// <returns>json string</returns>
+
         public static string GetPopulationDensityWiseSortedUSCensusData(string uS_CENSUS_CSV_FILE_PATH)
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<USCensusCSV> USCensusData = csvBuilder.LoadUSCensusCSVData(uS_CENSUS_CSV_FILE_PATH);
-            List<USCensusCSV> sorted = USCensusData
-                                          .OrderBy(x => x.PopulationDensity)
+            List<USCensusdao> USCensusData = csvBuilder.LoadUSCensusCSVData(uS_CENSUS_CSV_FILE_PATH);
+            List<USCensusdao> sorted = USCensusData
+                                          .OrderBy(x => x.DensityPerSqKm)
                                           .Reverse()
                                           .ToList();
             string json = JsonConvert.SerializeObject(sorted);
             return json;
         }
 
+        /// <summary>
+        /// short US census Data Total Area wise convert into json string
+        /// </summary>
+        /// <param name="indianCensusCSVFilePath"></param>
+        /// <returns>json string</returns>
         public static string GetAreaWiseSortedUSCensusData(string uS_CENSUS_CSV_FILE_PATH)
         {
             ICSVBuilder csvBuilder = CSVBuilderFactory.CreateCSVBuilder();
-            List<USCensusCSV> USCensusData = csvBuilder.LoadUSCensusCSVData(uS_CENSUS_CSV_FILE_PATH);
-            List<USCensusCSV> sorted = USCensusData
-                                          .OrderBy(x => x.totalArea)
+            List<USCensusdao> USCensusData = csvBuilder.LoadUSCensusCSVData(uS_CENSUS_CSV_FILE_PATH);
+            List<USCensusdao> sorted = USCensusData
+                                          .OrderBy(x => x.TotalArea)
                                           .Reverse()
                                           .ToList();
             string json = JsonConvert.SerializeObject(sorted);
             return json;
+
         }
     }
 }

@@ -15,17 +15,17 @@ namespace CensusAnalyser
         /// </summary>
         /// <param name="CSVFilePath"></param>
         /// <returns>List of csv data</returns>
-        public List<IndiaCensusCSV> LoadCSVData(string CSVFilePath)
+        public List<CensusDAO> LoadCSVData(string CSVFilePath)
         {
-            List<IndiaCensusCSV> records = new List<IndiaCensusCSV>(); 
-            //Dictionary<string, IndiaCensusCSV> records = new Dictionary<string, IndiaCensusCSV>();
+            List<CensusDAO> records = new List<CensusDAO>(); 
+           
             try
             {
                 //using csvHelper to read csv Data and convert into list
                 using (var reader = new StreamReader(CSVFilePath))
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    records = csv.GetRecords<IndiaCensusCSV>().ToList();
+                    records = csv.GetRecords<CensusDAO>().ToList();
                 }
                 return records;
 
@@ -38,11 +38,11 @@ namespace CensusAnalyser
             {
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.WRONG_CSV_FILE_PATH, "");
             }
-            catch (CsvHelper.MissingFieldException)
+            catch (MissingFieldException)
             {
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.WRONG_DELIMETER, "");
             }
-            catch (CsvHelper.HeaderValidationException)
+            catch (HeaderValidationException)
             {
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, "");
             }
@@ -53,16 +53,16 @@ namespace CensusAnalyser
          /// </summary>
          /// <param name="CSVFilePath"></param>
          /// <returns>List of csv data</returns>
-        public List<IndiaStateCodeCSV> LoadStateCSVData(string CSVFilePath)
+        public List<IndiaStateDao> LoadStateCSVData(string CSVFilePath)
         {
-            List<IndiaStateCodeCSV> records = new List<IndiaStateCodeCSV>();
+            List<IndiaStateDao> records = new List<IndiaStateDao>();
             try
             {
                 //using csvHelper to read csv Data and convert into list
                 using (var reader = new StreamReader(CSVFilePath))
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    records = csv.GetRecords<IndiaStateCodeCSV>().ToList();
+                    records = csv.GetRecords<IndiaStateDao>().ToList();
                 }
                 return records;
             }
@@ -74,7 +74,7 @@ namespace CensusAnalyser
             {
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.WRONG_CSV_FILE_PATH, "");
             }
-            catch (CsvHelper.MissingFieldException)
+            catch (MissingFieldException)
             {
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.WRONG_DELIMETER, "");
             }
@@ -83,21 +83,22 @@ namespace CensusAnalyser
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, "");
             }
         }
+
         /// <summary>
         /// Load US census Data
         /// </summary>
         /// <param name="CSVFilePath"></param>
         /// <returns>List of data</returns>
-        public List<USCensusCSV> LoadUSCensusCSVData(string CSVFilePath)
+        public List<USCensusdao> LoadUSCensusCSVData(string CSVFilePath)
         {
-            List<USCensusCSV> records = new List<USCensusCSV>();
+            List<USCensusdao> records = new List<USCensusdao>();
             try
             {
                 //using csvHelper to read csv Data and convert into list
                 using (var reader = new StreamReader(CSVFilePath))
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    records = csv.GetRecords<USCensusCSV>().ToList();
+                    records = csv.GetRecords<USCensusdao>().ToList();
                 }
                 return records;
             }
@@ -109,11 +110,11 @@ namespace CensusAnalyser
             {
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.WRONG_CSV_FILE_PATH, "");
             }
-            catch (CsvHelper.MissingFieldException)
+            catch (MissingFieldException)
             {
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.WRONG_DELIMETER, "");
             }
-            catch (CsvHelper.HeaderValidationException)
+            catch (HeaderValidationException)
             {
                 throw new CSVBuilderException(CSVBuilderException.ExceptionType.INVALID_CENSUS_DATA, "");
             }

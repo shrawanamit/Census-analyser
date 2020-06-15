@@ -1,8 +1,6 @@
 using NUnit.Framework;
 using CensusAnalyser;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
 using Nancy.Json;
 
 
@@ -32,6 +30,7 @@ namespace NUnitTestProject1
             int indiaCensusCSVDataCount = CensusAnalyserManager.LoadIndiaCensusData(India_CENSUS_CSV_FILE_PATH);
             Assert.AreEqual(29, indiaCensusCSVDataCount);
         }
+
         //test case 1.2 : cheaking wrong csv file path
         [Test]
         public void GivenWrongCSVFilePath_ShouldReturn_CustomException()
@@ -45,6 +44,7 @@ namespace NUnitTestProject1
                 Assert.AreEqual(CSVBuilderException.ExceptionType.WRONG_CSV_FILE_PATH, e.EType);
             }
         }
+
         //test case 1.3 : cheaking wrong csv file type
         [Test]
         public void GivenWrongCSVFiletype_ShouldReturn_CustomException()
@@ -58,6 +58,7 @@ namespace NUnitTestProject1
                 Assert.AreEqual(CensusAnalyzerException.ExceptionType.WRONG_CSV_FILE_TYPE, e.EType);
             }
         }
+
         //test case 1.4 : cheaking wrong csv file type
         [Test]
         public void GivenWrongCSVWrongDelimeter_ShouldReturn_CustomException()
@@ -72,6 +73,7 @@ namespace NUnitTestProject1
             }
 
         }
+
         //test case 1.5 : cheaking wrong header in csv file
         [Test]
         public void GivenWrongCSVWrongHeader_ShouldReturn_CustomException()
@@ -108,6 +110,7 @@ namespace NUnitTestProject1
                 Assert.AreEqual(CSVBuilderException.ExceptionType.WRONG_CSV_FILE_PATH, e.EType);
             }
         }
+
         /// <summary>
         /// //test case 2.3 : cheaking wrong csv file type
         /// </summary>
@@ -166,11 +169,8 @@ namespace NUnitTestProject1
         {
             string indiaCensusCSVDataJsonString = CensusAnalyserManager.GetStateWiseSortedCensusData(India_CENSUS_CSV_FILE_PATH);
             List<IndiaCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaCensusCSV>>(indiaCensusCSVDataJsonString);
-            foreach (IndiaCensusCSV str in listObject)
-            {
-                Assert.AreEqual("Andhra Pradesh", str.State);
-                break;
-            }
+            Assert.AreEqual("Andhra Pradesh", listObject[0].State);
+            
         }
 
         ///// <summary>
@@ -181,11 +181,7 @@ namespace NUnitTestProject1
         {
             string indiaStateCensusCSVDataJsonString = CensusAnalyserManager.GetStateCodeWiseSortedCensusData(India_STATE_CODE_CSV_FILE_PATH);
             List<IndiaStateCodeCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaStateCodeCSV>>(indiaStateCensusCSVDataJsonString);
-            foreach (IndiaStateCodeCSV str in listObject)
-            {
-                Assert.AreEqual("AD", str.StateCode);
-                break;
-            }
+            Assert.AreEqual("AD", listObject[0].StateCode);
         }
 
         ///// <summary>
@@ -196,40 +192,28 @@ namespace NUnitTestProject1
         {
             string indiaCensusCSVDataJsonString = CensusAnalyserManager.GetStateWiseSortedCensusData(India_CENSUS_CSV_FILE_PATH);
             List<IndiaCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaCensusCSV>>(indiaCensusCSVDataJsonString);
-            foreach (IndiaCensusCSV str in listObject)
-            {
-                Assert.AreEqual("Andhra Pradesh", str.State);
-                break;
-            }
+            Assert.AreEqual("Andhra Pradesh", listObject[0].State);
         }
 
         ///// <summary>
-        ///// use case 6:sorted indian State csv According to Population wise 
+        ///// use case 6:sorted indian  csv According to Population wise 
         ///// </summary>
         [Test]
-        public void GivenIndianStateCensusCsv_whenSortedOnPopulationDencity_shouldReturnShortedResult()
+        public void GivenIndianCensusCsv_whenSortedOnPopulationDencity_shouldReturnShortedResult()
         {
             string indiaCensusCSVDataJsonString = CensusAnalyserManager.GetPopulaionPerSqKmWiseSortedCensusData(India_CENSUS_CSV_FILE_PATH);
             List<IndiaCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaCensusCSV>>(indiaCensusCSVDataJsonString);
-            foreach (IndiaCensusCSV str in listObject)
-            {
-                Assert.AreEqual("Arunachal Pradesh", str.State);
-                break;
-            }
+            Assert.AreEqual("Arunachal Pradesh", listObject[0].State);
         }
         ///// <summary>
-        ///// use case 7:sorted indian State csv According to Population wise 
+        ///// use case 7:sorted indian csv According to Population wise 
         ///// </summary>
         [Test]
-        public void GivenIndianStateCensusCsv_whenSortedOnStateArea_shouldReturnShortedResult()
+        public void GivenIndianCensusCsv_whenSortedOnStateArea_shouldReturnShortedResult()
         {
             string indiaCensusCSVDataJsonString = CensusAnalyserManager.GetStateAreaWiseSortedCensusData(India_CENSUS_CSV_FILE_PATH);
             List<IndiaCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<IndiaCensusCSV>>(indiaCensusCSVDataJsonString);
-            foreach (IndiaCensusCSV str in listObject)
-            {
-                Assert.AreEqual("Goa", str.State);
-                break;
-            }
+            Assert.AreEqual("Goa", listObject[0].State);
         }
 
         /// <summary>
@@ -302,11 +286,7 @@ namespace NUnitTestProject1
         {
             string usCensusCSVDataJsonString = CensusAnalyserManager.GetPopulationWiseSortedUSCensusData(US_CENSUS_CSV_FILE_PATH);
             List<USCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<USCensusCSV>>(usCensusCSVDataJsonString);
-            foreach (USCensusCSV str in listObject)
-            {
-                Assert.AreEqual("California", str.State);
-                break;
-            }
+            Assert.AreEqual("California", listObject[0].State);
         }
 
         /// <summary>
@@ -317,12 +297,9 @@ namespace NUnitTestProject1
         {
             string usCensusCSVDataJsonString = CensusAnalyserManager.GetPopulationDensityWiseSortedUSCensusData(US_CENSUS_CSV_FILE_PATH);
             List<USCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<USCensusCSV>>(usCensusCSVDataJsonString);
-            foreach (USCensusCSV str in listObject)
-            {
-                Assert.AreEqual("District of Columbia", str.State);
-                break;
-            }
+            Assert.AreEqual("District of Columbia", listObject[0].State);
         }
+
         /// <summary>
         ///use case 10: US Census Csv when Sorted On Population
         /// </summary>
@@ -331,11 +308,7 @@ namespace NUnitTestProject1
         {
             string usCensusCSVDataJsonString = CensusAnalyserManager.GetAreaWiseSortedUSCensusData(US_CENSUS_CSV_FILE_PATH);
             List<USCensusCSV> listObject = new JavaScriptSerializer().Deserialize<List<USCensusCSV>>(usCensusCSVDataJsonString);
-            foreach (USCensusCSV str in listObject)
-            {
-                Assert.AreEqual("Alaska", str.State);
-                break;
-            }
+            Assert.AreEqual("Alaska", listObject[0].State);
         }
     }
 }
