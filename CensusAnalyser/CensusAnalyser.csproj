@@ -10,7 +10,7 @@
     <PackageReference Include="EO.WebBrowser" Version="20.1.45" />
     <PackageReference Include="LanguageExt.Core" Version="3.4.15" />
     <PackageReference Include="LumenWorksCsvReader" Version="4.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NPOI" Version="2.5.1" />
     <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
   </ItemGroup>
